@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 
+import com.asepmo.R;
 import com.asepmo.application.browser.BrowserActivity;
 import com.asepmo.engine.graphics.typeface.CalligraphyContextWrapper;
 

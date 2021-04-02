@@ -15,7 +15,7 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.asepmo.application.R;
+import com.asepmo.R;
 import com.asepmo.engine.app.folder.routine.FileTool;
 
 import java.util.Iterator;
