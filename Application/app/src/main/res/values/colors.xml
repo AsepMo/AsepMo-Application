@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#e52d27</color>
+    <color name="colorPrimaryDark">#b31217</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorControlHighlight">#FFCCBC</color>
    	<color name="colorControlNormal">#FF5722</color>
+
+    <color name="textColorPrimary">#17191c</color>
+    <color name="textColorSecondary">#20242A</color>
+    <color name="windowBackground">#e8e8e8</color>
+    
+    <color name="item_selected">#90FFFFFF</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+	<color name="accent_color_light">#FFBB33</color>
+
+    <color name="menu_icons">#757575</color>
+    <color name="menu_text">#222222</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_bg_loading">#dc858585</color>
+    <color name="color_bg_success">#dc82ce32</color>
+    <color name="color_bg_error">#dcd84315</color>
+    <color name="semi_transparent_black">#90000000</color>
+	<color name="accent_color_light">#FF4081</color>
+    <color name="drawer_background">#ffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="light">#ffa0a0a0</color>
+    <color name="gray_dark">#222222</color>
+    <color name="gray_light">#dddddd</color>
+    <color name="gray_medium">#cdcdcd</color>
+    <color name="white">#ffffff</color>
+    <color name="gray_extra_dark">#1b1b1b</color>
+    <color name="gray_list_bg">#0d000000</color>
+    <color name="dark_text">#3f3f3f</color>
 </resources>
