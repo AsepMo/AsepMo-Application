@@ -1,19 +1,39 @@
 package com.asepmo.application;
 
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.content.DialogInterface;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.ClipData;
+import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.AsyncTask;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.io.File;
 
 import com.asepmo.R;
 import com.asepmo.engine.graphics.typeface.CalligraphyContextWrapper;
 import com.asepmo.application.browser.BrowserActivity;
+import com.asepmo.application.updater.Updater;
+import com.asepmo.application.updater.UpdateModel;
+import com.asepmo.application.updater.UpdaterService;
+import com.asepmo.application.updater.UpdateListener;
+import com.asepmo.application.updater.UpgradeUtil;
 
 public class ApplicationActivity extends AppCompatActivity
 {
@@ -23,7 +43,13 @@ public class ApplicationActivity extends AppCompatActivity
         Intent mApplication = new Intent(c, ApplicationActivity.class);
         c.startActivity(mApplication);
     }
+	
+	private String mDirPath;
+    public static final String UPGRADE = "upgrade";
+    private UpdaterService loadFileService;
     
+    private boolean isRegisteredService;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +57,34 @@ public class ApplicationActivity extends AppCompatActivity
         
         Toolbar mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        
+        mDirPath = createDownLoadUpgradeDir(getApplicationContext());
+		new Updater(ApplicationActivity.this, "https://raw.githubusercontent.com/AsepMo/AsepMo/master/app/update-aplication.json", new UpdateListener() {
+				@Override
+				public void onJsonDataReceived(final UpdateModel updateModel, JSONObject jsonObject) {
+					if (Updater.getCurrentVersionCode(ApplicationActivity.this) < updateModel.getVersionCode()) {
+						new AlertDialog.Builder(ApplicationActivity.this)
+                            .setTitle(getString(R.string.actions_update))
+                            .setCancelable(updateModel.isCancellable())
+                            .setPositiveButton(getString(R.string.app_updater_btn_update), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+									String url = updateModel.getUrl();
+                                    Intent intent = new Intent(getApplicationContext(), UpdaterService.class);
+									intent.putExtra("down_load_path", mDirPath);
+									intent.putExtra("down_load_url", url);
+									bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+                                }
+                            })
+                            .show();
+					}
+				}
+
+				@Override
+				public void onError(String error) {
+					// Do something
+
+				}
+			}).execute();
      }
      
     @Override
@@ -59,4 +112,63 @@ public class ApplicationActivity extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+	public void setStopDownload(){
+		if (isRegisteredService) {
+			unbindService(serviceConnection);
+			isRegisteredService = false;
+		}
+	}
+	
+	public void setDeleteFile()
+	{
+		if (isRegisteredService) {
+			unbindService(serviceConnection);
+			isRegisteredService = false;
+		}
+		File dir = new File(mDirPath);
+		UpgradeUtil.deleteContentsOfDir(dir);
+	}
+
+	private static String createDownLoadUpgradeDir(Context context) {
+        String dir = null;
+        final String dirName = UPGRADE;
+        File root = null;
+        if (Environment.getExternalStorageState().equalsIgnoreCase(Environment.MEDIA_MOUNTED)) {
+            root = context.getExternalFilesDir(null);
+        } else {
+            root = context.getFilesDir();
+        }
+        File file = new File(root, dirName);
+        file.mkdirs();
+        dir = file.getAbsolutePath();
+        return dir;
+    }
+
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder service) {
+            loadFileService = ((UpdaterService.LocalBinder) service).getService();
+            isRegisteredService = true;
+
+            loadFileService.setOnProgressChangeListener(new UpdaterService.onProgressChangeListener() {
+					@Override
+					public void onProgressChange(final int progress, final String message) {
+						/*handler.post(new Runnable() {
+						 @Override
+						 public void run() {
+						 messageTextView.setText(message + ",Progress" + progress + "%");
+						 }
+						 });*/
+					}
+				});
+            Log.i(TAG, "onServiceConnected");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            Log.i(TAG, "onServiceDisconnected");
+            loadFileService = null;
+            isRegisteredService = false;
+        }
+    };
 }

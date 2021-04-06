@@ -17,10 +17,22 @@ limitations under the License.
 
 <resources>
 
-    <string name="app_name">VBrowser</string>
+    <string name="app_name">AsepMo</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
+	<!-- Download upgrade notification -->
+	<string name="actions_update">Update Available</string>
+	<string name="app_updater_btn_update">Update</string>
+    <string name="app_updater_upgrade_is_loading">Now is Download..</string>
+    <string name="app_updater_has_download">has Downloaded</string>
+    <string name="app_updater_download_complete">has Downloaded Successfully</string>
+    <string name="app_updater_download_fail">Downloaded fail</string>
+    <string name="app_updater_please_try_later">Please Try Again!</string>
+    <string name="app_updater_start_download">Start Download</string>
+    <string name="app_updater_stop_download">Stop Download</string>
+    <string name="app_updater_delete_apk_file">Delete Apk file</string>
+	
     <string name="action_websearch">Web search</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_new_tab">New Tab</string>

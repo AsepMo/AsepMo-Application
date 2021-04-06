@@ -21,5 +21,11 @@
         <!-- specify enter and exit transitions -->
         <item name="android:windowEnterTransition">@android:transition/explode</item>
         <item name="android:windowExitTransition">@android:transition/explode</item>
+
+		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
+		<item name="android:statusBarColor">@color/colorPrimaryDark</item>
+
+		<item name="android:alertDialogTheme">@style/AppCompatAlertDialogStyle</item>
+		
     </style>
 </resources>

@@ -1,20 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#e52d27</color>
-    <color name="colorPrimaryDark">#b31217</color>
-    <color name="colorAccent">#FF4081</color>
+	<!-- Color For Application -->
+	<color name="colorPrimaryDark">#148f77</color> <!-- [ BLUE - 700 ] -->
+	<color name="colorPrimary">#1abc9c</color> <!-- [ BLUE - 500 ] -->
+	<color name="colorPrimaryLight">#BBDEFB</color> <!-- [ BLUE - 100 ] -->
+	<color name="colorAccent">#f56fac60</color> <!-- [ PINK - A400 ] -->
+
+    <color name="colorPrimaryClient">#e52d27</color>
+    <color name="colorPrimaryClientDark">#b31217</color>
+    <color name="colorAccentClient">#FF4081</color>
     <color name="colorControlHighlight">#FFCCBC</color>
    	<color name="colorControlNormal">#FF5722</color>
 
-    <color name="textColorPrimary">#17191c</color>
-    <color name="textColorSecondary">#20242A</color>
-    <color name="windowBackground">#e8e8e8</color>
-    
-    <color name="item_selected">#90FFFFFF</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#B6B6B6</color>
-	<color name="accent_color_light">#FFBB33</color>
+	<!-- Color For TextColor -->
+	<color name="textColorPrimary">#212121</color>
+	<color name="textColorSecondary">#727272</color>
 
+	<color name="text">#FFFFFF</color>
+	<color name="icons">#FFFFFF</color>
+	<color name="divider">#B6B6B6</color>
+	<color name="lightgray">#aa888888</color>
+	<color name="item_selected">#90FFFFFF</color>
+	
+	<color name="colorControlNormal">@color/textColorSecondary</color>
+	<color name="colorControlActivated">@color/colorAccent</color>
+	<color name="colorControlHighlight">@color/divider</color>
+
+
+	<color name="colorButtonNormal">@color/defaultColor</color>
+    <color name="accent_color_light">#FFBB33</color>
+	<!-- Color For ActionMode -->
+	<color name="actionModeBackground">#FF4081</color>
+
+	<color name="defaultColor">#ffa53f2b</color>
+	<color name="defaultColorSecondary">#EF3A0F</color>
+	<color name="defaultControl">#939393</color>
+
+	<color name="alertColor">#323232</color>
+    <color name="alertDarkColor">#ff242424</color>
+	<color name="statusBarColor">#28000000</color>
+
+	<color name="windowBackground">#C0C3C6</color>
+	<color name="lightBackground">#E0E0E0</color>
+	<color name="darkBackground">#424242</color>
+	<color name="drawerBackground">#FFfafafa</color>
+	<color name="rowBackground">#F2F2F2</color>
+	<!-- General -->
+    <color name="about_item_icon_color">#313131</color>
+
+    <!-- Social -->
+    <color name="about_facebook_color">#3b5998</color>
+    <color name="about_twitter_color">#55acee</color>
+    <color name="about_instagram_color">#3f729b</color>
+    <color name="about_play_store_color">#45BBC2</color>
+    <color name="about_youtube_color">#cd201f</color>
+    <color name="about_github_color">#333333</color>
+
+	<!-- Debug Colors -->
+	<color name="debug_kit_primary">#8FB5C3</color>
+    <color name="debug_kit_background">#022735</color>
+    <color name="debug_kit_background_black">#000</color>
+    <color name="debug_kit_primary_light">#fff</color>
+    <color name="debug_kit_background_light">#8FB5C3</color>
+    <color name="debug_kit_background_black_light">#000</color>
+	
     <color name="menu_icons">#757575</color>
     <color name="menu_text">#222222</color>
     <color name="color_white">#FFFFFF</color>
