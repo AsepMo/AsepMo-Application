@@ -19,7 +19,7 @@ public class ApplicationActivity extends AppCompatActivity
 {
     
     public static String TAG = ApplicationActivity.class.getSimpleName();
-    public static void start(Context c, String url) {
+    public static void start(Context c) {
         Intent mApplication = new Intent(c, ApplicationActivity.class);
         c.startActivity(mApplication);
     }

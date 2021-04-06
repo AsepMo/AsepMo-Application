@@ -15,7 +15,17 @@ import com.asepmo.engine.graphics.typeface.CalligraphyContextWrapper;
 public class ApplicationStarter extends AppCompatActivity {
     
     public static String TAG = ApplicationStarter.class.getSimpleName();
-    
+    private Handler mHandler = new Handler();
+	private Runnable mRunner = new Runnable(){
+		@Override
+		public void run()
+		{
+			ApplicationActivity.start(ApplicationStarter.this);
+            ApplicationStarter.this.finish();
+		}
+		
+	};
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme_NoActionBar);
@@ -24,17 +34,26 @@ public class ApplicationStarter extends AppCompatActivity {
         Toolbar mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         
-        new Handler().postDelayed(new Runnable()
-        {
-            @Override
-            public void run(){
-                ApplicationActivity.start(ApplicationStarter.this, "https://m.youtube.com");
-                ApplicationStarter.this.finish();
-            }
-        },2500);
+        mHandler.postDelayed(mRunner,2500);
     }
+
+	@Override
+	protected void onPause()
+	{
+		// TODO: Implement this method
+		super.onPause();
+		mHandler.removeCallbacks(mRunner);
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		// TODO: Implement this method
+		super.onDestroy();
+		mHandler.removeCallbacks(mRunner);
+	}
   
-    
+	
     @Override
     protected void attachBaseContext(Context newBase)
     {
