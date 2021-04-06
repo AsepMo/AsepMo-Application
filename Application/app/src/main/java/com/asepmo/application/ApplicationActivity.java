@@ -58,7 +58,7 @@ public class ApplicationActivity extends AppCompatActivity
         Toolbar mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mDirPath = createDownLoadUpgradeDir(getApplicationContext());
-		new Updater(ApplicationActivity.this, "https://raw.githubusercontent.com/AsepMo/AsepMo/master/app/update-aplication.json", new UpdateListener() {
+		new Updater(ApplicationActivity.this, "https://raw.githubusercontent.com/AsepMo/AsepMo-Application/master/Application/update_application.json", new UpdateListener() {
 				@Override
 				public void onJsonDataReceived(final UpdateModel updateModel, JSONObject jsonObject) {
 					if (Updater.getCurrentVersionCode(ApplicationActivity.this) < updateModel.getVersionCode()) {
